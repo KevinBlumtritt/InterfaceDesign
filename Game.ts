@@ -56,6 +56,15 @@ namespace InBetween {
 
     }
 
+    /*function myFunction() : void {
+        let x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+      }*/
+
     function update(): void {
         crc2.clearRect(0, 0, crc2.canvas.width, crc2.canvas.height);
         crc2.putImageData(image, 0, 0);
@@ -192,7 +201,7 @@ namespace InBetween {
 
         crc2.save();
 
-        if (button1hover == true && rectangleArray.length < 4) {
+        if (button1hover == true && rectangleArray.length < 5) {
             crc2.fillStyle = "#f2f2f2";
             crc2.globalAlpha = 0.4;
         }
@@ -201,7 +210,7 @@ namespace InBetween {
             crc2.fillStyle = "#333333";
         }
 
-        if (rectangleArray.length >= 4) {
+        if (rectangleArray.length >= 5) {
             crc2.fillStyle = "#222222";
         }
 
@@ -212,13 +221,13 @@ namespace InBetween {
         crc2.save();
         crc2.shadowBlur = 7;
 
-        if (rectangleArray.length < 4) {
+        if (rectangleArray.length < 5) {
             crc2.shadowColor = "#f2f2f2";
             crc2.fillStyle = "#f2f2f2";
         }
 
 
-        if (rectangleArray.length >= 4) {
+        if (rectangleArray.length >= 5) {
             crc2.shadowColor = "#555555";
             crc2.fillStyle = "#555555";
         }
@@ -245,7 +254,7 @@ namespace InBetween {
             crc2.fillStyle = "#333333";
         }
 
-        if (squareArray.length >= 2) {
+        if (squareArray.length >= 4) {
             crc2.fillStyle = "#222222";
         }
 
@@ -256,12 +265,12 @@ namespace InBetween {
         crc2.save();
         crc2.shadowBlur = 7;
 
-        if (squareArray.length < 2) {
+        if (squareArray.length < 4) {
             crc2.shadowColor = "#f2f2f2";
             crc2.fillStyle = "#f2f2f2";
         }
 
-        if (squareArray.length >= 2) {
+        if (squareArray.length >= 4) {
             crc2.shadowColor = "#555555";
             crc2.fillStyle = "#555555";
         }
@@ -278,7 +287,7 @@ namespace InBetween {
     function drawTrianglebutton(): void {
 
         crc2.save();
-        if (button3hover == true && triangleArray.length < 1) {
+        if (button3hover == true && triangleArray.length < 0) {
             crc2.fillStyle = "#f2f2f2";
             crc2.globalAlpha = 0.4;
         }
@@ -287,7 +296,7 @@ namespace InBetween {
             crc2.fillStyle = "#333333";
         }
 
-        if (triangleArray.length >= 1) {
+        if (triangleArray.length >= 0) {
             crc2.fillStyle = "#222222";
         }
 
@@ -299,12 +308,12 @@ namespace InBetween {
         crc2.save();
         crc2.shadowBlur = 7;
 
-        if (triangleArray.length < 1) {
+        if (triangleArray.length < 0) {
             crc2.shadowColor = "#f2f2f2";
             crc2.fillStyle = "#f2f2f2";
         }
 
-        if (triangleArray.length >= 1) {
+        if (triangleArray.length >= 0) {
             crc2.shadowColor = "#555555";
             crc2.fillStyle = "#555555";
         }
@@ -323,11 +332,11 @@ namespace InBetween {
 
     function drawProgressbar(): void {
 
-        crc2.save();
-
         let totalElements = [...rectangleArray, ...squareArray, ...triangleArray];
 
-        if (totalElements.length == 0) {
+        crc2.beginPath();
+        crc2.save();
+        if (totalElements.length <= 0) {
             crc2.fillStyle = "#333333";
         }
 
@@ -335,54 +344,69 @@ namespace InBetween {
             crc2.fillStyle = "#f2f2f2";
             crc2.shadowBlur = 7;
             crc2.shadowColor = "#f2f2f2";
-        }
+            crc2.arc(30, 715, 8, 0, 2 * Math.PI);
 
-        crc2.fillRect(20, 710, 43.2, 13.25);
+        }
+        crc2.arc(30, 715, 5, 0, 2 * Math.PI);
+        crc2.fill();
         crc2.restore();
         crc2.closePath();
 
+        crc2.beginPath();
         crc2.save();
         if (totalElements.length <= 1) {
             crc2.fillStyle = "#333333";
+
         }
 
         if (totalElements.length > 1) {
             crc2.fillStyle = "#f2f2f2";
             crc2.shadowBlur = 7;
             crc2.shadowColor = "#f2f2f2";
+            crc2.arc(55, 715, 8, 0, 2 * Math.PI);
         }
-        crc2.fillRect(64.4, 710, 43.2, 13.25);
+        crc2.arc(55, 715, 5, 0, 2 * Math.PI);
+        crc2.fill();
         crc2.restore();
         crc2.closePath();
 
+        crc2.beginPath();
         crc2.save();
         if (totalElements.length <= 2) {
             crc2.fillStyle = "#333333";
+
         }
 
         if (totalElements.length > 2) {
             crc2.fillStyle = "#f2f2f2";
             crc2.shadowBlur = 7;
             crc2.shadowColor = "#f2f2f2";
+            crc2.arc(80, 715, 8, 0, 2 * Math.PI);
         }
-        crc2.fillRect(108.8, 710, 43.2, 13.25);
+        crc2.arc(80, 715, 5, 0, 2 * Math.PI);
+        crc2.fill();
         crc2.restore();
         crc2.closePath();
 
+        crc2.beginPath();
         crc2.save();
         if (totalElements.length <= 3) {
             crc2.fillStyle = "#333333";
+
         }
 
         if (totalElements.length > 3) {
             crc2.fillStyle = "#f2f2f2";
             crc2.shadowBlur = 7;
             crc2.shadowColor = "#f2f2f2";
+            crc2.arc(105, 715, 8, 0, 2 * Math.PI);
         }
-        crc2.fillRect(153.2, 710, 43.2, 13.25);
+        crc2.arc(105, 715, 5, 0, 2 * Math.PI);
+        crc2.fill();
         crc2.restore();
         crc2.closePath();
 
+        crc2.beginPath();
         crc2.save();
         if (totalElements.length <= 4) {
             crc2.fillStyle = "#333333";
@@ -392,10 +416,82 @@ namespace InBetween {
             crc2.fillStyle = "#f2f2f2";
             crc2.shadowBlur = 7;
             crc2.shadowColor = "#f2f2f2";
+            crc2.arc(130, 715, 8, 0, 2 * Math.PI);
         }
-        crc2.fillRect(197.6, 710, 43.2, 13.25);
+        crc2.arc(130, 715, 5, 0, 2 * Math.PI);
+        crc2.fill();
         crc2.restore();
         crc2.closePath();
+
+        crc2.beginPath();
+        crc2.save();
+        if (totalElements.length <= 5) {
+            crc2.fillStyle = "#333333";
+        }
+
+        if (totalElements.length > 5) {
+            crc2.fillStyle = "#f2f2f2";
+            crc2.shadowBlur = 7;
+            crc2.shadowColor = "#f2f2f2";
+            crc2.arc(155, 715, 8, 0, 2 * Math.PI);
+        }
+        crc2.arc(155, 715, 5, 0, 2 * Math.PI);
+        crc2.fill();
+        crc2.restore();
+        crc2.closePath();
+
+        crc2.beginPath();
+        crc2.save();
+        if (totalElements.length <= 6) {
+            crc2.fillStyle = "#333333";
+        }
+
+        if (totalElements.length > 6) {
+            crc2.fillStyle = "#f2f2f2";
+            crc2.shadowBlur = 7;
+            crc2.shadowColor = "#f2f2f2";
+            crc2.arc(180, 715, 8, 0, 2 * Math.PI);
+        }
+        crc2.arc(180, 715, 5, 0, 2 * Math.PI);
+        crc2.fill();
+        crc2.restore();
+        crc2.closePath();
+
+        crc2.beginPath();
+        crc2.save();
+        if (totalElements.length <= 7) {
+            crc2.fillStyle = "#333333";
+        }
+
+        if (totalElements.length > 7) {
+            crc2.fillStyle = "#f2f2f2";
+            crc2.shadowBlur = 7;
+            crc2.shadowColor = "#f2f2f2";
+            crc2.arc(205, 715, 8, 0, 2 * Math.PI);
+        }
+        crc2.arc(205, 715, 5, 0, 2 * Math.PI);
+        crc2.fill();
+        crc2.restore();
+        crc2.closePath();
+
+        crc2.beginPath();
+        crc2.save();
+        if (totalElements.length <= 8) {
+            crc2.fillStyle = "#333333";
+        }
+
+        if (totalElements.length > 8) {
+            crc2.fillStyle = "#f2f2f2";
+            crc2.shadowBlur = 7;
+            crc2.shadowColor = "#f2f2f2";
+            crc2.arc(230, 715, 8, 0, 2 * Math.PI);
+        }
+        crc2.arc(230, 715, 5, 0, 2 * Math.PI);
+        crc2.fill();
+        crc2.restore();
+        crc2.closePath();
+
+
     }
 
     let xstart: number = 300;
@@ -551,9 +647,9 @@ namespace InBetween {
 
 
         if (levelCompleted == false) {
-            crc2.fillStyle = "#ababab";if (glow <= 10) {
-            glow += 0.05;
-        }
+            crc2.fillStyle = "#ababab"; if (glow <= 10) {
+                glow += 0.05;
+            }
             crc2.shadowBlur = glow;
             crc2.shadowColor = "#ababab";
         }
@@ -679,7 +775,7 @@ namespace InBetween {
         let isLeftClick = _client.which === 1;
         if (!isLeftClick) return;
 
-        if (rectangleArray.length < 4 &&
+        if (rectangleArray.length < 5 &&
             _client.offsetX > xbutton1 &&
             _client.offsetX < xbutton1 + wbutton1 &&
             _client.offsetY > ybutton1 &&
@@ -695,7 +791,7 @@ namespace InBetween {
             window.addEventListener("mouseup", handleMouseup);
         }
 
-        if (squareArray.length < 2 &&
+        if (squareArray.length < 4 &&
             _client.offsetX > xbutton2 &&
             _client.offsetX < xbutton2 + wbutton2 &&
             _client.offsetY > ybutton2 &&
@@ -711,7 +807,7 @@ namespace InBetween {
             window.addEventListener("mouseup", handleMouseup);
         }
 
-        if (triangleArray.length < 1 &&
+        if (triangleArray.length < 0 &&
             _client.offsetX > xbutton3 &&
             _client.offsetX < xbutton3 + wbutton3 &&
             _client.offsetY > ybutton3 &&
@@ -883,30 +979,39 @@ namespace InBetween {
 
     function handleMouseup(_client: MouseEvent): void {
 
-        if (rectanglePresent == true &&
-            currentRectangle.position.y > 617
-        ) {
-            console.log("remove");
-            let index: number = rectangleArray.indexOf(currentRectangle);
-            rectangleArray.splice(index, 1);
+        for (let rectangle of rectangleArray) {
+            currentRectangle = rectangle;
+            if (rectanglePresent == true &&
+                currentRectangle.position.y > 617
+            ) {
+                console.log("remove rectangle");
+                let index: number = rectangleArray.indexOf(currentRectangle);
+                rectangleArray.splice(index, 1);
+            }
         }
 
-        if (squarePresent == true &&
-            currentSquare.position.y > 617
-        ) {
-            console.log("remove");
-            let index: number = squareArray.indexOf(currentSquare);
-            squareArray.splice(index, 1);
+
+        for (let square of squareArray) {
+            currentSquare = square;
+            if (squarePresent == true &&
+                currentSquare.position.y > 617
+            ) {
+                console.log("remove square ");
+                let index: number = squareArray.indexOf(currentSquare);
+                squareArray.splice(index, 1);
+            }
         }
 
-        if (trianglePresent == true &&
-            currentTriangle.position.y > 617
-        ) {
-            console.log("remove");
-            let index: number = triangleArray.indexOf(currentTriangle);
-            triangleArray.splice(index, 1);
+        for (let triangle of triangleArray) {
+            currentTriangle = triangle;
+            if (trianglePresent == true &&
+                currentTriangle.position.y > 617
+            ) {
+                console.log("remove triangle");
+                let index: number = triangleArray.indexOf(currentTriangle);
+                triangleArray.splice(index, 1);
+            }
         }
-
         /*if(
             currentSquare.position.y > 617
         ){

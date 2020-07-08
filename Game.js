@@ -42,6 +42,14 @@ var InBetween;
         drawTarget();
         image = InBetween.crc2.getImageData(0, 0, canvas.width, canvas.height);
     }
+    /*function myFunction() : void {
+        let x = document.getElementById("myDIV");
+        if (x.style.display === "none") {
+          x.style.display = "block";
+        } else {
+          x.style.display = "none";
+        }
+      }*/
     function update() {
         InBetween.crc2.clearRect(0, 0, InBetween.crc2.canvas.width, InBetween.crc2.canvas.height);
         InBetween.crc2.putImageData(image, 0, 0);
@@ -146,14 +154,14 @@ var InBetween;
     let hbutton1 = 60;
     function drawRectanglebutton() {
         InBetween.crc2.save();
-        if (InBetween.button1hover == true && InBetween.rectangleArray.length < 4) {
+        if (InBetween.button1hover == true && InBetween.rectangleArray.length < 5) {
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.globalAlpha = 0.4;
         }
         if (InBetween.button1hover == false) {
             InBetween.crc2.fillStyle = "#333333";
         }
-        if (InBetween.rectangleArray.length >= 4) {
+        if (InBetween.rectangleArray.length >= 5) {
             InBetween.crc2.fillStyle = "#222222";
         }
         InBetween.crc2.fillRect(xbutton1, ybutton1, wbutton1, hbutton1);
@@ -161,11 +169,11 @@ var InBetween;
         InBetween.crc2.closePath();
         InBetween.crc2.save();
         InBetween.crc2.shadowBlur = 7;
-        if (InBetween.rectangleArray.length < 4) {
+        if (InBetween.rectangleArray.length < 5) {
             InBetween.crc2.shadowColor = "#f2f2f2";
             InBetween.crc2.fillStyle = "#f2f2f2";
         }
-        if (InBetween.rectangleArray.length >= 4) {
+        if (InBetween.rectangleArray.length >= 5) {
             InBetween.crc2.shadowColor = "#555555";
             InBetween.crc2.fillStyle = "#555555";
         }
@@ -186,7 +194,7 @@ var InBetween;
         if (InBetween.button2hover == false) {
             InBetween.crc2.fillStyle = "#333333";
         }
-        if (InBetween.squareArray.length >= 2) {
+        if (InBetween.squareArray.length >= 4) {
             InBetween.crc2.fillStyle = "#222222";
         }
         InBetween.crc2.fillRect(xbutton2, ybutton2, wbutton2, hbutton2);
@@ -194,11 +202,11 @@ var InBetween;
         InBetween.crc2.closePath();
         InBetween.crc2.save();
         InBetween.crc2.shadowBlur = 7;
-        if (InBetween.squareArray.length < 2) {
+        if (InBetween.squareArray.length < 4) {
             InBetween.crc2.shadowColor = "#f2f2f2";
             InBetween.crc2.fillStyle = "#f2f2f2";
         }
-        if (InBetween.squareArray.length >= 2) {
+        if (InBetween.squareArray.length >= 4) {
             InBetween.crc2.shadowColor = "#555555";
             InBetween.crc2.fillStyle = "#555555";
         }
@@ -212,14 +220,14 @@ var InBetween;
     let hbutton3 = 60;
     function drawTrianglebutton() {
         InBetween.crc2.save();
-        if (InBetween.button3hover == true && InBetween.triangleArray.length < 1) {
+        if (InBetween.button3hover == true && InBetween.triangleArray.length < 0) {
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.globalAlpha = 0.4;
         }
         if (InBetween.button3hover == false) {
             InBetween.crc2.fillStyle = "#333333";
         }
-        if (InBetween.triangleArray.length >= 1) {
+        if (InBetween.triangleArray.length >= 0) {
             InBetween.crc2.fillStyle = "#222222";
         }
         InBetween.crc2.fillRect(xbutton3, ybutton3, wbutton3, hbutton3);
@@ -228,11 +236,11 @@ var InBetween;
         InBetween.crc2.beginPath();
         InBetween.crc2.save();
         InBetween.crc2.shadowBlur = 7;
-        if (InBetween.triangleArray.length < 1) {
+        if (InBetween.triangleArray.length < 0) {
             InBetween.crc2.shadowColor = "#f2f2f2";
             InBetween.crc2.fillStyle = "#f2f2f2";
         }
-        if (InBetween.triangleArray.length >= 1) {
+        if (InBetween.triangleArray.length >= 0) {
             InBetween.crc2.shadowColor = "#555555";
             InBetween.crc2.fillStyle = "#555555";
         }
@@ -246,19 +254,23 @@ var InBetween;
     }
     //progress bar
     function drawProgressbar() {
-        InBetween.crc2.save();
         let totalElements = [...InBetween.rectangleArray, ...InBetween.squareArray, ...InBetween.triangleArray];
-        if (totalElements.length == 0) {
+        InBetween.crc2.beginPath();
+        InBetween.crc2.save();
+        if (totalElements.length <= 0) {
             InBetween.crc2.fillStyle = "#333333";
         }
         if (totalElements.length > 0) {
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.shadowBlur = 7;
             InBetween.crc2.shadowColor = "#f2f2f2";
+            InBetween.crc2.arc(30, 715, 8, 0, 2 * Math.PI);
         }
-        InBetween.crc2.fillRect(20, 710, 43.2, 13.25);
+        InBetween.crc2.arc(30, 715, 5, 0, 2 * Math.PI);
+        InBetween.crc2.fill();
         InBetween.crc2.restore();
         InBetween.crc2.closePath();
+        InBetween.crc2.beginPath();
         InBetween.crc2.save();
         if (totalElements.length <= 1) {
             InBetween.crc2.fillStyle = "#333333";
@@ -267,10 +279,13 @@ var InBetween;
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.shadowBlur = 7;
             InBetween.crc2.shadowColor = "#f2f2f2";
+            InBetween.crc2.arc(55, 715, 8, 0, 2 * Math.PI);
         }
-        InBetween.crc2.fillRect(64.4, 710, 43.2, 13.25);
+        InBetween.crc2.arc(55, 715, 5, 0, 2 * Math.PI);
+        InBetween.crc2.fill();
         InBetween.crc2.restore();
         InBetween.crc2.closePath();
+        InBetween.crc2.beginPath();
         InBetween.crc2.save();
         if (totalElements.length <= 2) {
             InBetween.crc2.fillStyle = "#333333";
@@ -279,10 +294,13 @@ var InBetween;
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.shadowBlur = 7;
             InBetween.crc2.shadowColor = "#f2f2f2";
+            InBetween.crc2.arc(80, 715, 8, 0, 2 * Math.PI);
         }
-        InBetween.crc2.fillRect(108.8, 710, 43.2, 13.25);
+        InBetween.crc2.arc(80, 715, 5, 0, 2 * Math.PI);
+        InBetween.crc2.fill();
         InBetween.crc2.restore();
         InBetween.crc2.closePath();
+        InBetween.crc2.beginPath();
         InBetween.crc2.save();
         if (totalElements.length <= 3) {
             InBetween.crc2.fillStyle = "#333333";
@@ -291,10 +309,13 @@ var InBetween;
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.shadowBlur = 7;
             InBetween.crc2.shadowColor = "#f2f2f2";
+            InBetween.crc2.arc(105, 715, 8, 0, 2 * Math.PI);
         }
-        InBetween.crc2.fillRect(153.2, 710, 43.2, 13.25);
+        InBetween.crc2.arc(105, 715, 5, 0, 2 * Math.PI);
+        InBetween.crc2.fill();
         InBetween.crc2.restore();
         InBetween.crc2.closePath();
+        InBetween.crc2.beginPath();
         InBetween.crc2.save();
         if (totalElements.length <= 4) {
             InBetween.crc2.fillStyle = "#333333";
@@ -303,8 +324,70 @@ var InBetween;
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.shadowBlur = 7;
             InBetween.crc2.shadowColor = "#f2f2f2";
+            InBetween.crc2.arc(130, 715, 8, 0, 2 * Math.PI);
         }
-        InBetween.crc2.fillRect(197.6, 710, 43.2, 13.25);
+        InBetween.crc2.arc(130, 715, 5, 0, 2 * Math.PI);
+        InBetween.crc2.fill();
+        InBetween.crc2.restore();
+        InBetween.crc2.closePath();
+        InBetween.crc2.beginPath();
+        InBetween.crc2.save();
+        if (totalElements.length <= 5) {
+            InBetween.crc2.fillStyle = "#333333";
+        }
+        if (totalElements.length > 5) {
+            InBetween.crc2.fillStyle = "#f2f2f2";
+            InBetween.crc2.shadowBlur = 7;
+            InBetween.crc2.shadowColor = "#f2f2f2";
+            InBetween.crc2.arc(155, 715, 8, 0, 2 * Math.PI);
+        }
+        InBetween.crc2.arc(155, 715, 5, 0, 2 * Math.PI);
+        InBetween.crc2.fill();
+        InBetween.crc2.restore();
+        InBetween.crc2.closePath();
+        InBetween.crc2.beginPath();
+        InBetween.crc2.save();
+        if (totalElements.length <= 6) {
+            InBetween.crc2.fillStyle = "#333333";
+        }
+        if (totalElements.length > 6) {
+            InBetween.crc2.fillStyle = "#f2f2f2";
+            InBetween.crc2.shadowBlur = 7;
+            InBetween.crc2.shadowColor = "#f2f2f2";
+            InBetween.crc2.arc(180, 715, 8, 0, 2 * Math.PI);
+        }
+        InBetween.crc2.arc(180, 715, 5, 0, 2 * Math.PI);
+        InBetween.crc2.fill();
+        InBetween.crc2.restore();
+        InBetween.crc2.closePath();
+        InBetween.crc2.beginPath();
+        InBetween.crc2.save();
+        if (totalElements.length <= 7) {
+            InBetween.crc2.fillStyle = "#333333";
+        }
+        if (totalElements.length > 7) {
+            InBetween.crc2.fillStyle = "#f2f2f2";
+            InBetween.crc2.shadowBlur = 7;
+            InBetween.crc2.shadowColor = "#f2f2f2";
+            InBetween.crc2.arc(205, 715, 8, 0, 2 * Math.PI);
+        }
+        InBetween.crc2.arc(205, 715, 5, 0, 2 * Math.PI);
+        InBetween.crc2.fill();
+        InBetween.crc2.restore();
+        InBetween.crc2.closePath();
+        InBetween.crc2.beginPath();
+        InBetween.crc2.save();
+        if (totalElements.length <= 8) {
+            InBetween.crc2.fillStyle = "#333333";
+        }
+        if (totalElements.length > 8) {
+            InBetween.crc2.fillStyle = "#f2f2f2";
+            InBetween.crc2.shadowBlur = 7;
+            InBetween.crc2.shadowColor = "#f2f2f2";
+            InBetween.crc2.arc(230, 715, 8, 0, 2 * Math.PI);
+        }
+        InBetween.crc2.arc(230, 715, 5, 0, 2 * Math.PI);
+        InBetween.crc2.fill();
         InBetween.crc2.restore();
         InBetween.crc2.closePath();
     }
@@ -529,7 +612,7 @@ var InBetween;
         let isLeftClick = _client.which === 1;
         if (!isLeftClick)
             return;
-        if (InBetween.rectangleArray.length < 4 &&
+        if (InBetween.rectangleArray.length < 5 &&
             _client.offsetX > xbutton1 &&
             _client.offsetX < xbutton1 + wbutton1 &&
             _client.offsetY > ybutton1 &&
@@ -543,7 +626,7 @@ var InBetween;
             window.addEventListener("mousemove", handleMousemoveRectangle);
             window.addEventListener("mouseup", handleMouseup);
         }
-        if (InBetween.squareArray.length < 2 &&
+        if (InBetween.squareArray.length < 4 &&
             _client.offsetX > xbutton2 &&
             _client.offsetX < xbutton2 + wbutton2 &&
             _client.offsetY > ybutton2 &&
@@ -557,7 +640,7 @@ var InBetween;
             window.addEventListener("mousemove", handleMousemoveSquare);
             window.addEventListener("mouseup", handleMouseup);
         }
-        if (InBetween.triangleArray.length < 1 &&
+        if (InBetween.triangleArray.length < 0 &&
             _client.offsetX > xbutton3 &&
             _client.offsetX < xbutton3 + wbutton3 &&
             _client.offsetY > ybutton3 &&
@@ -689,23 +772,32 @@ var InBetween;
     }
     InBetween.handleMousemoveTriangle = handleMousemoveTriangle;
     function handleMouseup(_client) {
-        if (InBetween.rectanglePresent == true &&
-            InBetween.currentRectangle.position.y > 617) {
-            console.log("remove");
-            let index = InBetween.rectangleArray.indexOf(InBetween.currentRectangle);
-            InBetween.rectangleArray.splice(index, 1);
+        for (let rectangle of InBetween.rectangleArray) {
+            InBetween.currentRectangle = rectangle;
+            if (InBetween.rectanglePresent == true &&
+                InBetween.currentRectangle.position.y > 617) {
+                console.log("remove rectangle");
+                let index = InBetween.rectangleArray.indexOf(InBetween.currentRectangle);
+                InBetween.rectangleArray.splice(index, 1);
+            }
         }
-        if (InBetween.squarePresent == true &&
-            InBetween.currentSquare.position.y > 617) {
-            console.log("remove");
-            let index = InBetween.squareArray.indexOf(InBetween.currentSquare);
-            InBetween.squareArray.splice(index, 1);
+        for (let square of InBetween.squareArray) {
+            InBetween.currentSquare = square;
+            if (InBetween.squarePresent == true &&
+                InBetween.currentSquare.position.y > 617) {
+                console.log("remove square ");
+                let index = InBetween.squareArray.indexOf(InBetween.currentSquare);
+                InBetween.squareArray.splice(index, 1);
+            }
         }
-        if (InBetween.trianglePresent == true &&
-            InBetween.currentTriangle.position.y > 617) {
-            console.log("remove");
-            let index = InBetween.triangleArray.indexOf(InBetween.currentTriangle);
-            InBetween.triangleArray.splice(index, 1);
+        for (let triangle of InBetween.triangleArray) {
+            InBetween.currentTriangle = triangle;
+            if (InBetween.trianglePresent == true &&
+                InBetween.currentTriangle.position.y > 617) {
+                console.log("remove triangle");
+                let index = InBetween.triangleArray.indexOf(InBetween.currentTriangle);
+                InBetween.triangleArray.splice(index, 1);
+            }
         }
         /*if(
             currentSquare.position.y > 617
