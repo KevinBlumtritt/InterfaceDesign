@@ -257,14 +257,14 @@ var InBetween;
         let totalElements = [...InBetween.rectangleArray, ...InBetween.squareArray, ...InBetween.triangleArray];
         InBetween.crc2.beginPath();
         InBetween.crc2.save();
-        if (totalElements.length <= 0) {
+        if (totalElements.length > 8) {
             InBetween.crc2.fillStyle = "#333333";
         }
-        if (totalElements.length > 0) {
+        if (totalElements.length <= 8) {
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.shadowBlur = 7;
             InBetween.crc2.shadowColor = "#f2f2f2";
-            InBetween.crc2.arc(30, 715, 8, 0, 2 * Math.PI);
+            InBetween.crc2.arc(30, 715, 6, 0, 2 * Math.PI);
         }
         InBetween.crc2.arc(30, 715, 5, 0, 2 * Math.PI);
         InBetween.crc2.fill();
@@ -272,14 +272,14 @@ var InBetween;
         InBetween.crc2.closePath();
         InBetween.crc2.beginPath();
         InBetween.crc2.save();
-        if (totalElements.length <= 1) {
+        if (totalElements.length > 7) {
             InBetween.crc2.fillStyle = "#333333";
         }
-        if (totalElements.length > 1) {
+        if (totalElements.length <= 7) {
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.shadowBlur = 7;
             InBetween.crc2.shadowColor = "#f2f2f2";
-            InBetween.crc2.arc(55, 715, 8, 0, 2 * Math.PI);
+            InBetween.crc2.arc(55, 715, 6, 0, 2 * Math.PI);
         }
         InBetween.crc2.arc(55, 715, 5, 0, 2 * Math.PI);
         InBetween.crc2.fill();
@@ -287,14 +287,14 @@ var InBetween;
         InBetween.crc2.closePath();
         InBetween.crc2.beginPath();
         InBetween.crc2.save();
-        if (totalElements.length <= 2) {
+        if (totalElements.length > 6) {
             InBetween.crc2.fillStyle = "#333333";
         }
-        if (totalElements.length > 2) {
+        if (totalElements.length <= 6) {
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.shadowBlur = 7;
             InBetween.crc2.shadowColor = "#f2f2f2";
-            InBetween.crc2.arc(80, 715, 8, 0, 2 * Math.PI);
+            InBetween.crc2.arc(80, 715, 6, 0, 2 * Math.PI);
         }
         InBetween.crc2.arc(80, 715, 5, 0, 2 * Math.PI);
         InBetween.crc2.fill();
@@ -302,14 +302,14 @@ var InBetween;
         InBetween.crc2.closePath();
         InBetween.crc2.beginPath();
         InBetween.crc2.save();
-        if (totalElements.length <= 3) {
+        if (totalElements.length > 5) {
             InBetween.crc2.fillStyle = "#333333";
         }
-        if (totalElements.length > 3) {
+        if (totalElements.length <= 5) {
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.shadowBlur = 7;
             InBetween.crc2.shadowColor = "#f2f2f2";
-            InBetween.crc2.arc(105, 715, 8, 0, 2 * Math.PI);
+            InBetween.crc2.arc(105, 715, 6, 0, 2 * Math.PI);
         }
         InBetween.crc2.arc(105, 715, 5, 0, 2 * Math.PI);
         InBetween.crc2.fill();
@@ -317,14 +317,14 @@ var InBetween;
         InBetween.crc2.closePath();
         InBetween.crc2.beginPath();
         InBetween.crc2.save();
-        if (totalElements.length <= 4) {
+        if (totalElements.length > 4) {
             InBetween.crc2.fillStyle = "#333333";
         }
-        if (totalElements.length > 4) {
+        if (totalElements.length <= 4) {
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.shadowBlur = 7;
             InBetween.crc2.shadowColor = "#f2f2f2";
-            InBetween.crc2.arc(130, 715, 8, 0, 2 * Math.PI);
+            InBetween.crc2.arc(130, 715, 6, 0, 2 * Math.PI);
         }
         InBetween.crc2.arc(130, 715, 5, 0, 2 * Math.PI);
         InBetween.crc2.fill();
@@ -332,14 +332,14 @@ var InBetween;
         InBetween.crc2.closePath();
         InBetween.crc2.beginPath();
         InBetween.crc2.save();
-        if (totalElements.length <= 5) {
+        if (totalElements.length > 3) {
             InBetween.crc2.fillStyle = "#333333";
         }
-        if (totalElements.length > 5) {
+        if (totalElements.length <= 3) {
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.shadowBlur = 7;
             InBetween.crc2.shadowColor = "#f2f2f2";
-            InBetween.crc2.arc(155, 715, 8, 0, 2 * Math.PI);
+            InBetween.crc2.arc(155, 715, 6, 0, 2 * Math.PI);
         }
         InBetween.crc2.arc(155, 715, 5, 0, 2 * Math.PI);
         InBetween.crc2.fill();
@@ -347,14 +347,14 @@ var InBetween;
         InBetween.crc2.closePath();
         InBetween.crc2.beginPath();
         InBetween.crc2.save();
-        if (totalElements.length <= 6) {
+        if (totalElements.length > 2) {
             InBetween.crc2.fillStyle = "#333333";
         }
-        if (totalElements.length > 6) {
+        if (totalElements.length <= 2) {
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.shadowBlur = 7;
             InBetween.crc2.shadowColor = "#f2f2f2";
-            InBetween.crc2.arc(180, 715, 8, 0, 2 * Math.PI);
+            InBetween.crc2.arc(180, 715, 6, 0, 2 * Math.PI);
         }
         InBetween.crc2.arc(180, 715, 5, 0, 2 * Math.PI);
         InBetween.crc2.fill();
@@ -362,14 +362,14 @@ var InBetween;
         InBetween.crc2.closePath();
         InBetween.crc2.beginPath();
         InBetween.crc2.save();
-        if (totalElements.length <= 7) {
+        if (totalElements.length > 1) {
             InBetween.crc2.fillStyle = "#333333";
         }
-        if (totalElements.length > 7) {
+        if (totalElements.length <= 1) {
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.shadowBlur = 7;
             InBetween.crc2.shadowColor = "#f2f2f2";
-            InBetween.crc2.arc(205, 715, 8, 0, 2 * Math.PI);
+            InBetween.crc2.arc(205, 715, 6, 0, 2 * Math.PI);
         }
         InBetween.crc2.arc(205, 715, 5, 0, 2 * Math.PI);
         InBetween.crc2.fill();
@@ -377,14 +377,14 @@ var InBetween;
         InBetween.crc2.closePath();
         InBetween.crc2.beginPath();
         InBetween.crc2.save();
-        if (totalElements.length <= 8) {
+        if (totalElements.length > 0) {
             InBetween.crc2.fillStyle = "#333333";
         }
-        if (totalElements.length > 8) {
+        if (totalElements.length <= 0) {
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.shadowBlur = 7;
             InBetween.crc2.shadowColor = "#f2f2f2";
-            InBetween.crc2.arc(230, 715, 8, 0, 2 * Math.PI);
+            InBetween.crc2.arc(230, 715, 6, 0, 2 * Math.PI);
         }
         InBetween.crc2.arc(230, 715, 5, 0, 2 * Math.PI);
         InBetween.crc2.fill();
