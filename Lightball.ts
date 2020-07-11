@@ -41,6 +41,8 @@ namespace InBetween {
 
         move(_timeslice: number): void {
 
+            collisionsound.volume = 0.05;
+
             //let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             //offset.scale(_timeslice);
             //this.position.add(offset);
@@ -69,6 +71,7 @@ namespace InBetween {
 
             }*/
 
+
             if (
                 this.position.x + this.radius > xtarget &&
                 this.position.x - this.radius < xtarget + wtarget &&
@@ -76,6 +79,15 @@ namespace InBetween {
                 this.position.y - this.radius < ytarget + htarget) {
                 console.log("Level geschafft");
                 levelCompleted = true;
+
+                let showendscreen: HTMLDivElement = <HTMLDivElement>document.getElementById("overlay");
+                showendscreen.style.display = "block";
+
+                finishgamesound.currentTime = 0;
+                finishgamesound.volume = 0.2;
+                finishgamesound.play();
+
+
             }
 
             for (let [index, rectangle] of rectangleArray.entries()) {
@@ -89,6 +101,8 @@ namespace InBetween {
 
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     rectangleArray[index] = rectangle;
                     currentRectangle = rectangle;
 
@@ -121,6 +135,8 @@ namespace InBetween {
 
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;
                     rectangleArray[index] = rectangle;
                     currentRectangle = rectangle;
 
@@ -154,6 +170,8 @@ namespace InBetween {
 
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     rectangleArray[index] = rectangle;
                     currentRectangle = rectangle;
 
@@ -186,6 +204,8 @@ namespace InBetween {
 
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     rectangleArray[index] = rectangle;
                     currentRectangle = rectangle;
 
@@ -219,6 +239,8 @@ namespace InBetween {
 
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     console.log(this.velocity);
                     rectangleArray[index] = rectangle;
                     currentRectangle = rectangle;
@@ -277,6 +299,8 @@ namespace InBetween {
 
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     console.log(this.velocity);
                     rectangleArray[index] = rectangle;
                     currentRectangle = rectangle;
@@ -329,6 +353,8 @@ namespace InBetween {
 
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     rectangleArray[index] = rectangle;
                     currentRectangle = rectangle;
 
@@ -361,6 +387,8 @@ namespace InBetween {
 
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     rectangleArray[index] = rectangle;
                     currentRectangle = rectangle;
 
@@ -394,6 +422,8 @@ namespace InBetween {
 
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     rectangleArray[index] = rectangle;
                     currentRectangle = rectangle;
 
@@ -426,6 +456,8 @@ namespace InBetween {
 
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     rectangleArray[index] = rectangle;
                     currentRectangle = rectangle;
 
@@ -458,6 +490,8 @@ namespace InBetween {
 
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     rectangleArray[index] = rectangle;
                     currentRectangle = rectangle;
 
@@ -507,6 +541,8 @@ namespace InBetween {
 
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     rectangleArray[index] = rectangle;
                     currentRectangle = rectangle;
 
@@ -596,6 +632,10 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -618,7 +658,6 @@ namespace InBetween {
                         continue;
                     }
 
-
                     console.log(this.velocity)
                 }
 
@@ -631,6 +670,12 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -666,6 +711,8 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -702,6 +749,10 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -739,6 +790,8 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -776,6 +829,8 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -814,6 +869,8 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -852,6 +909,8 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -891,6 +950,8 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -922,6 +983,8 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -954,6 +1017,8 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -971,7 +1036,7 @@ namespace InBetween {
                         this.velocity = new Vector(-7, 0);
                         continue;
                     }
-                
+
                     console.log(this.velocity)
                 }
 
@@ -985,6 +1050,8 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -1017,6 +1084,8 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -1052,6 +1121,8 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -1090,6 +1161,8 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -1128,6 +1201,8 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -1165,6 +1240,8 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -1200,6 +1277,8 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -1219,6 +1298,8 @@ namespace InBetween {
 
                     square.isHit = true;
                     console.log(square.isHit);
+                    collisionsound.currentTime = 0;
+                    collisionsound.play();;;
                     squareArray[index] = square;
                     currentSquare = square;
 
@@ -1346,8 +1427,8 @@ namespace InBetween {
 
 
 
-
         }
+
 
     }
 }

@@ -1,14 +1,15 @@
 "use strict";
 var InBetween;
 (function (InBetween) {
-    window.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+    //window.addEventListener('contextmenu', function (e) { e.preventDefault(); });
     window.addEventListener("load", handleLoad);
     window.addEventListener("click", handleLeftclick);
-    window.addEventListener("contextmenu", handleRightclick);
+    //window.addEventListener("contextmenu", handleRightclick);
     window.addEventListener("mousedown", handleMousedown);
     window.addEventListener("mousemove", handleMousemoveHover);
     let image;
     let fps = 15;
+    let draggedElement = false;
     InBetween.levelCompleted = false;
     InBetween.rectangleArray = [];
     InBetween.squareArray = [];
@@ -25,7 +26,17 @@ var InBetween;
     InBetween.startbuttonhover = false;
     InBetween.rectanglehover = false;
     InBetween.trianglehover = false;
+    InBetween.finishgamesound = new Audio("finishgamesound.mp3");
+    InBetween.collisionsound = new Audio("Blop-Mark_DiAngelo-79054334.mp3");
+    InBetween.startbuttonsound = new Audio("multimedia_button_click_029.mp3");
+    InBetween.placerectanglesound = new Audio("Rectangledrop.mp3");
+    InBetween.placesquaresound = new Audio("Squaredrop.mp3");
+    function reloadpage() {
+        location.reload();
+    }
     function handleLoad(_event) {
+        let playagain = document.getElementById("startbutton");
+        playagain.addEventListener("click", reloadpage);
         let canvas = document.querySelector("canvas");
         if (!canvas)
             return;
@@ -42,23 +53,15 @@ var InBetween;
         drawTarget();
         image = InBetween.crc2.getImageData(0, 0, canvas.width, canvas.height);
     }
-    /*function myFunction() : void {
-        let x = document.getElementById("myDIV");
-        if (x.style.display === "none") {
-          x.style.display = "block";
-        } else {
-          x.style.display = "none";
-        }
-      }*/
+    InBetween.handleLoad = handleLoad;
     function update() {
         InBetween.crc2.clearRect(0, 0, InBetween.crc2.canvas.width, InBetween.crc2.canvas.height);
         InBetween.crc2.putImageData(image, 0, 0);
-        let outOfBounds = InBetween.throwLightball && InBetween.throwLightball.position.y < 0;
+        let outOfBounds = InBetween.throwLightball &&
+            InBetween.throwLightball.position.y < 0;
         //console.log(rectangleDragged);
         if (InBetween.throwLightball && !outOfBounds && InBetween.levelCompleted == false) {
-            let totalElements = [...InBetween.rectangleArray, ...InBetween.squareArray, ...InBetween.triangleArray];
-            for (let element of totalElements) {
-            }
+            //let totalElements = [...rectangleArray, ...squareArray, ...triangleArray];
             InBetween.throwLightball.draw();
             InBetween.throwLightball.move(1);
         }
@@ -187,14 +190,14 @@ var InBetween;
     let hbutton2 = 60;
     function drawSquarebutton() {
         InBetween.crc2.save();
-        if (InBetween.button2hover == true && InBetween.squareArray.length < 4) {
+        if (InBetween.button2hover == true && InBetween.squareArray.length < 3) {
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.globalAlpha = 0.4;
         }
         if (InBetween.button2hover == false) {
             InBetween.crc2.fillStyle = "#333333";
         }
-        if (InBetween.squareArray.length >= 4) {
+        if (InBetween.squareArray.length >= 3) {
             InBetween.crc2.fillStyle = "#222222";
         }
         InBetween.crc2.fillRect(xbutton2, ybutton2, wbutton2, hbutton2);
@@ -202,11 +205,11 @@ var InBetween;
         InBetween.crc2.closePath();
         InBetween.crc2.save();
         InBetween.crc2.shadowBlur = 7;
-        if (InBetween.squareArray.length < 4) {
+        if (InBetween.squareArray.length < 3) {
             InBetween.crc2.shadowColor = "#f2f2f2";
             InBetween.crc2.fillStyle = "#f2f2f2";
         }
-        if (InBetween.squareArray.length >= 4) {
+        if (InBetween.squareArray.length >= 3) {
             InBetween.crc2.shadowColor = "#555555";
             InBetween.crc2.fillStyle = "#555555";
         }
@@ -220,14 +223,14 @@ var InBetween;
     let hbutton3 = 60;
     function drawTrianglebutton() {
         InBetween.crc2.save();
-        if (InBetween.button3hover == true && InBetween.triangleArray.length < 0) {
+        if (InBetween.button3hover == true && InBetween.triangleArray.length < 1) {
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.globalAlpha = 0.4;
         }
         if (InBetween.button3hover == false) {
             InBetween.crc2.fillStyle = "#333333";
         }
-        if (InBetween.triangleArray.length >= 0) {
+        if (InBetween.triangleArray.length >= 1) {
             InBetween.crc2.fillStyle = "#222222";
         }
         InBetween.crc2.fillRect(xbutton3, ybutton3, wbutton3, hbutton3);
@@ -236,11 +239,11 @@ var InBetween;
         InBetween.crc2.beginPath();
         InBetween.crc2.save();
         InBetween.crc2.shadowBlur = 7;
-        if (InBetween.triangleArray.length < 0) {
+        if (InBetween.triangleArray.length < 1) {
             InBetween.crc2.shadowColor = "#f2f2f2";
             InBetween.crc2.fillStyle = "#f2f2f2";
         }
-        if (InBetween.triangleArray.length >= 0) {
+        if (InBetween.triangleArray.length >= 1) {
             InBetween.crc2.shadowColor = "#555555";
             InBetween.crc2.fillStyle = "#555555";
         }
@@ -546,49 +549,6 @@ var InBetween;
         return Math.min(Math.max(value, min), max);
     }*/
     //rotate object 
-    function handleRightclick(_client) {
-        for (let [index, rectangle] of InBetween.rectangleArray.entries()) {
-            if (InBetween.rectanglePresent == true &&
-                _client.offsetX > rectangle.position.x - rectangle.w / 2 &&
-                _client.offsetX < rectangle.position.x + rectangle.w / 2 &&
-                _client.offsetY > rectangle.position.y - rectangle.h / 2 &&
-                _client.offsetY < rectangle.position.y + rectangle.h / 2) {
-                console.log("right click");
-                rectangle.r += 45;
-                if (rectangle.r == 180) {
-                    rectangle.r = 0;
-                }
-                console.log(rectangle.r);
-                InBetween.rectangleArray[index] = rectangle;
-                InBetween.currentRectangle = rectangle;
-            }
-        }
-        for (let [index, square] of InBetween.squareArray.entries()) {
-            if (InBetween.squarePresent == true &&
-                _client.offsetX > square.position.x - square.w / 2 &&
-                _client.offsetX < square.position.x + square.w / 2 &&
-                _client.offsetY > square.position.y - square.h / 2 &&
-                _client.offsetY < square.position.y + square.h / 2) {
-                square.r += 22.5;
-                if (square.r == 90) {
-                    square.r = 0;
-                }
-                InBetween.squareArray[index] = square;
-                InBetween.currentSquare = square;
-            }
-        }
-        for (let [index, triangle] of InBetween.triangleArray.entries()) {
-            if (InBetween.trianglePresent == true &&
-                _client.offsetX > triangle.position.x - triangle.w &&
-                _client.offsetX < triangle.position.x + triangle.w &&
-                _client.offsetY > triangle.position.y - triangle.h / 2 &&
-                _client.offsetY < triangle.position.y + triangle.h / 2) {
-                triangle.r += 22.5;
-                InBetween.triangleArray[index] = triangle;
-                InBetween.currentTriangle = triangle;
-            }
-        }
-    }
     function setStartbuttonRadius() {
         rstart = 25;
     }
@@ -604,6 +564,54 @@ var InBetween;
             setTimeout(setStartbuttonRadius, 125);
             //console.log(rstart)
             InBetween.levelCompleted = false;
+            InBetween.startbuttonsound.play();
+            InBetween.startbuttonsound.volume = 0.1;
+            let showendscreen = document.getElementById("overlay");
+            showendscreen.style.display = "none";
+            //rotate object
+        }
+        else if (!draggedElement) {
+            for (let [index, rectangle] of InBetween.rectangleArray.entries()) {
+                if (InBetween.rectanglePresent == true &&
+                    _client.offsetX > rectangle.position.x - rectangle.w / 2 &&
+                    _client.offsetX < rectangle.position.x + rectangle.w / 2 &&
+                    _client.offsetY > rectangle.position.y - rectangle.h / 2 &&
+                    _client.offsetY < rectangle.position.y + rectangle.h / 2) {
+                    console.log("left click");
+                    rectangle.r += 45;
+                    if (rectangle.r == 180) {
+                        rectangle.r = 0;
+                    }
+                    console.log(rectangle.r);
+                    InBetween.rectangleArray[index] = rectangle;
+                    InBetween.currentRectangle = rectangle;
+                }
+            }
+            for (let [index, square] of InBetween.squareArray.entries()) {
+                if (InBetween.squarePresent == true &&
+                    _client.offsetX > square.position.x - square.w / 2 &&
+                    _client.offsetX < square.position.x + square.w / 2 &&
+                    _client.offsetY > square.position.y - square.h / 2 &&
+                    _client.offsetY < square.position.y + square.h / 2) {
+                    square.r += 22.5;
+                    if (square.r == 90) {
+                        square.r = 0;
+                    }
+                    InBetween.squareArray[index] = square;
+                    InBetween.currentSquare = square;
+                }
+            }
+            for (let [index, triangle] of InBetween.triangleArray.entries()) {
+                if (InBetween.trianglePresent == true &&
+                    _client.offsetX > triangle.position.x - triangle.w &&
+                    _client.offsetX < triangle.position.x + triangle.w &&
+                    _client.offsetY > triangle.position.y - triangle.h / 2 &&
+                    _client.offsetY < triangle.position.y + triangle.h / 2) {
+                    triangle.r += 22.5;
+                    InBetween.triangleArray[index] = triangle;
+                    InBetween.currentTriangle = triangle;
+                }
+            }
         }
     }
     //spawn objects
@@ -626,7 +634,7 @@ var InBetween;
             window.addEventListener("mousemove", handleMousemoveRectangle);
             window.addEventListener("mouseup", handleMouseup);
         }
-        if (InBetween.squareArray.length < 4 &&
+        if (InBetween.squareArray.length < 3 &&
             _client.offsetX > xbutton2 &&
             _client.offsetX < xbutton2 + wbutton2 &&
             _client.offsetY > ybutton2 &&
@@ -640,7 +648,7 @@ var InBetween;
             window.addEventListener("mousemove", handleMousemoveSquare);
             window.addEventListener("mouseup", handleMouseup);
         }
-        if (InBetween.triangleArray.length < 0 &&
+        if (InBetween.triangleArray.length < 1 &&
             _client.offsetX > xbutton3 &&
             _client.offsetX < xbutton3 + wbutton3 &&
             _client.offsetY > ybutton3 &&
@@ -757,23 +765,33 @@ var InBetween;
         InBetween.currentRectangle.position.x = _client.offsetX;
         InBetween.currentRectangle.position.y = _client.offsetY;
         InBetween.rectangleDragged = true;
+        draggedElement = true;
     }
     InBetween.handleMousemoveRectangle = handleMousemoveRectangle;
     function handleMousemoveSquare(_client) {
         InBetween.currentSquare.position.x = _client.offsetX;
         InBetween.currentSquare.position.y = _client.offsetY;
         InBetween.squareDragged = true;
+        draggedElement = true;
     }
     InBetween.handleMousemoveSquare = handleMousemoveSquare;
     function handleMousemoveTriangle(_client) {
         InBetween.currentTriangle.position.x = _client.offsetX;
         InBetween.currentTriangle.position.y = _client.offsetY;
         InBetween.triangleDragged = true;
+        draggedElement = true;
     }
     InBetween.handleMousemoveTriangle = handleMousemoveTriangle;
     function handleMouseup(_client) {
+        if (draggedElement) {
+            setTimeout(() => {
+                draggedElement = false;
+            }, 10);
+        }
         for (let rectangle of InBetween.rectangleArray) {
             InBetween.currentRectangle = rectangle;
+            //placerectanglesound.volume = 0.1;
+            //placerectanglesound.play();
             if (InBetween.rectanglePresent == true &&
                 InBetween.currentRectangle.position.y > 617) {
                 console.log("remove rectangle");
@@ -810,6 +828,31 @@ var InBetween;
         ){
             console.log("remove");
         }*/
+        /*if (throwLightball && throwLightball.position.y >= 0 &&
+            throwLightball.position.y <= 610 &&
+            throwLightball.position.x >= 0 &&
+            throwLightball.position.x <= 360) {
+
+            window.removeEventListener("click", handleLeftclick);
+            window.removeEventListener("contextmenu", handleRightclick);
+            window.removeEventListener("mousedown", handleMousedown);
+            window.removeEventListener("mousemove", handleMousemoveHover)
+            window.removeEventListener("mousemove", handleMousemoveRectangle);
+            window.removeEventListener("mousemove", handleMousemoveSquare);
+            window.removeEventListener("mousemove", handleMousemoveTriangle);
+            window.removeEventListener("mouseup", handleMouseup);
+        }
+        else {
+            console.log("out");
+            window.addEventListener("click", handleLeftclick);
+            window.addEventListener("contextmenu", handleRightclick);
+            window.addEventListener("mousedown", handleMousedown);
+            window.addEventListener("mousemove", handleMousemoveHover)
+            window.addEventListener("mousemove", handleMousemoveRectangle);
+            window.addEventListener("mousemove", handleMousemoveSquare);
+            window.addEventListener("mousemove", handleMousemoveTriangle);
+            window.addEventListener("mouseup", handleMouseup);
+        } */
         window.removeEventListener("mousemove", handleMousemoveRectangle);
         window.removeEventListener("mousemove", handleMousemoveSquare);
         window.removeEventListener("mousemove", handleMousemoveTriangle);

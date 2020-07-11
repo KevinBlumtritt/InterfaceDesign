@@ -28,6 +28,7 @@ var InBetween;
             InBetween.crc2.closePath();
         }
         move(_timeslice) {
+            InBetween.collisionsound.volume = 0.05;
             //let offset: Vector = new Vector(this.velocity.x, this.velocity.y);
             //offset.scale(_timeslice);
             //this.position.add(offset);
@@ -57,6 +58,11 @@ var InBetween;
                 this.position.y - this.radius < InBetween.ytarget + InBetween.htarget) {
                 console.log("Level geschafft");
                 InBetween.levelCompleted = true;
+                let showendscreen = document.getElementById("overlay");
+                showendscreen.style.display = "block";
+                InBetween.finishgamesound.currentTime = 0;
+                InBetween.finishgamesound.volume = 0.2;
+                InBetween.finishgamesound.play();
             }
             for (let [index, rectangle] of InBetween.rectangleArray.entries()) {
                 //down box
@@ -67,6 +73,10 @@ var InBetween;
                     this.position.y - this.radius < rectangle.position.y + rectangle.h / 2) {
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.rectangleArray[index] = rectangle;
                     InBetween.currentRectangle = rectangle;
                     if (rectangle.r == 0 && this.velocity.x == 0 && this.velocity.y == -7) {
@@ -92,6 +102,9 @@ var InBetween;
                     this.position.y - this.radius < rectangle.position.y + rectangle.h / 2) {
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
                     InBetween.rectangleArray[index] = rectangle;
                     InBetween.currentRectangle = rectangle;
                     if (rectangle.r == 0 && this.velocity.x == 5 && this.velocity.y == 5) {
@@ -117,6 +130,10 @@ var InBetween;
                     this.position.y - this.radius < rectangle.position.y - rectangle.h / 2) {
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.rectangleArray[index] = rectangle;
                     InBetween.currentRectangle = rectangle;
                     if (rectangle.r == 0 && this.velocity.x == 5 && this.velocity.y == 5) {
@@ -142,6 +159,10 @@ var InBetween;
                     this.position.y - this.radius < rectangle.position.y + rectangle.h / 2) {
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.rectangleArray[index] = rectangle;
                     InBetween.currentRectangle = rectangle;
                     if (rectangle.r == 0 && this.velocity.x == -5 && this.velocity.y == 5) {
@@ -167,6 +188,10 @@ var InBetween;
                     this.position.y - this.radius < rectangle.position.y) {
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     console.log(this.velocity);
                     InBetween.rectangleArray[index] = rectangle;
                     InBetween.currentRectangle = rectangle;
@@ -214,6 +239,10 @@ var InBetween;
                     this.position.y - this.radius < rectangle.position.y + rectangle.h + rectangle.h) {
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     console.log(this.velocity);
                     InBetween.rectangleArray[index] = rectangle;
                     InBetween.currentRectangle = rectangle;
@@ -256,6 +285,10 @@ var InBetween;
                     this.position.y - this.radius < rectangle.position.y + rectangle.w / 2) {
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.rectangleArray[index] = rectangle;
                     InBetween.currentRectangle = rectangle;
                     if (rectangle.r == 90 && this.velocity.x == 0 && this.velocity.y == -7) {
@@ -281,6 +314,10 @@ var InBetween;
                     this.position.y - this.radius < rectangle.position.y + rectangle.w / 2) {
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.rectangleArray[index] = rectangle;
                     InBetween.currentRectangle = rectangle;
                     if (rectangle.r == 90 && this.velocity.x == 5 && this.velocity.y == 5) {
@@ -306,6 +343,10 @@ var InBetween;
                     this.position.y - this.radius < rectangle.position.y - rectangle.w / 2) {
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.rectangleArray[index] = rectangle;
                     InBetween.currentRectangle = rectangle;
                     if (rectangle.r == 90 && this.velocity.x == 5 && this.velocity.y == 5) {
@@ -331,6 +372,10 @@ var InBetween;
                     this.position.y - this.radius < rectangle.position.y + rectangle.w / 2) {
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.rectangleArray[index] = rectangle;
                     InBetween.currentRectangle = rectangle;
                     if (rectangle.r == 90 && this.velocity.x == -5 && this.velocity.y == 5) {
@@ -356,6 +401,10 @@ var InBetween;
                     this.position.y - this.radius < rectangle.position.y) {
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.rectangleArray[index] = rectangle;
                     InBetween.currentRectangle = rectangle;
                     if (rectangle.r == 135 && this.velocity.x == 0 && this.velocity.y == -7) {
@@ -397,6 +446,10 @@ var InBetween;
                     this.position.y - this.radius < rectangle.position.y + rectangle.h + rectangle.h) {
                     rectangle.isHit = true;
                     console.log(rectangle.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.rectangleArray[index] = rectangle;
                     InBetween.currentRectangle = rectangle;
                     if (rectangle.r == 135 && this.velocity.x == 0 && this.velocity.y == -7) {
@@ -469,6 +522,13 @@ var InBetween;
                     this.position.y - this.radius < square.position.y - square.h / 2) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 0 && this.velocity.x == -5 && this.velocity.y == 5) {
@@ -496,6 +556,17 @@ var InBetween;
                     this.position.y - this.radius < square.position.y + square.h / 2) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 0 && this.velocity.x == -5 && this.velocity.y == 5) {
@@ -523,6 +594,10 @@ var InBetween;
                     this.position.y - this.radius < square.position.y + square.h / 2) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 0 && this.velocity.x == 5 && this.velocity.y == -5) {
@@ -550,6 +625,14 @@ var InBetween;
                     this.position.y - this.radius < square.position.y + square.h / 2) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 0 && this.velocity.x == 5 && this.velocity.y == 5) {
@@ -577,6 +660,10 @@ var InBetween;
                     this.position.y < square.position.y + square.h * 0.7) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 22.5 && this.velocity.x == 0 && this.velocity.y == -7) {
@@ -606,6 +693,10 @@ var InBetween;
                     this.position.y < square.position.y + square.h * 0.7) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 22.5 && this.velocity.x == 0 && this.velocity.y == -7) {
@@ -635,6 +726,10 @@ var InBetween;
                     this.position.y < square.position.y + square.h * 0.3) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 22.5 && this.velocity.x == 5 && this.velocity.y == -5) {
@@ -664,6 +759,10 @@ var InBetween;
                     this.position.y < square.position.y - square.h * 0.3) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 22.5 && this.velocity.x == 5 && this.velocity.y == 5) {
@@ -693,6 +792,10 @@ var InBetween;
                     this.position.y - this.radius < square.position.y + square.h / 1.5) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 45 && this.velocity.x == 0 && this.velocity.y == -7) {
@@ -718,6 +821,10 @@ var InBetween;
                     this.position.y - this.radius < square.position.y + square.h / 1.5) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 45 && this.velocity.x == 0 && this.velocity.y == -7) {
@@ -743,6 +850,10 @@ var InBetween;
                     this.position.y - this.radius < square.position.y) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 45 && this.velocity.x == 5 && this.velocity.y == 5) {
@@ -768,6 +879,10 @@ var InBetween;
                     this.position.y - this.radius < square.position.y) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 45 && this.velocity.x == -5 && this.velocity.y == 5) {
@@ -793,6 +908,10 @@ var InBetween;
                     this.position.y < square.position.y + square.h * 0.7) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 67.5 && this.velocity.x == 5 && this.velocity.y == 5) {
@@ -822,6 +941,10 @@ var InBetween;
                     this.position.y < square.position.y + square.h * 0.7) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 67.5 && this.velocity.x == 0 && this.velocity.y == -7) {
@@ -851,6 +974,10 @@ var InBetween;
                     this.position.y < square.position.y + square.h * 0.3) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 67.5 && this.velocity.x == 5 && this.velocity.y == -5) {
@@ -880,6 +1007,10 @@ var InBetween;
                     this.position.y < square.position.y + square.h * 0.3) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 67.5 && this.velocity.x == 0 && this.velocity.y == 7) {
@@ -909,6 +1040,10 @@ var InBetween;
                     this.position.y < square.position.y - square.h * 0.3) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 67.5 && this.velocity.x == 7 && this.velocity.y == 0) {
@@ -937,6 +1072,10 @@ var InBetween;
                     this.position.y - this.radius < square.position.y + square.w / 2) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     this.velocity.x = -this.velocity.x;
@@ -950,6 +1089,10 @@ var InBetween;
                     this.position.y - this.radius < square.position.y + square.h / 2) {
                     square.isHit = true;
                     console.log(square.isHit);
+                    InBetween.collisionsound.currentTime = 0;
+                    InBetween.collisionsound.play();
+                    ;
+                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 135 && this.velocity.x == 0 && this.velocity.y == -7) {

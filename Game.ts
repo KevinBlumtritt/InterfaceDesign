@@ -1,16 +1,16 @@
 namespace InBetween {
 
-    window.addEventListener('contextmenu', function (e) { e.preventDefault(); });
+    //window.addEventListener('contextmenu', function (e) { e.preventDefault(); });
     window.addEventListener("load", handleLoad);
     window.addEventListener("click", handleLeftclick);
-    window.addEventListener("contextmenu", handleRightclick);
+    //window.addEventListener("contextmenu", handleRightclick);
     window.addEventListener("mousedown", handleMousedown);
-    window.addEventListener("mousemove", handleMousemoveHover)
-
+    window.addEventListener("mousemove", handleMousemoveHover);
 
     export let crc2: CanvasRenderingContext2D;
     let image: ImageData;
     let fps: number = 15;
+    let draggedElement: boolean = false;
 
     export let levelCompleted: boolean = false;
     export let throwLightball: Lightball;
@@ -33,9 +33,22 @@ namespace InBetween {
     export let startbuttonhover: boolean = false;
     export let rectanglehover: boolean = false;
     export let trianglehover: boolean = false;
+    export let finishgamesound = new Audio("finishgamesound.mp3");
+    export let collisionsound = new Audio("Blop-Mark_DiAngelo-79054334.mp3");
+    export let startbuttonsound = new Audio("multimedia_button_click_029.mp3");
+    export let placerectanglesound = new Audio("Rectangledrop.mp3");
+    export let placesquaresound = new Audio("Squaredrop.mp3");
+
+    function reloadpage(): void {
+        location.reload()
+    }
 
 
-    function handleLoad(_event: Event): void {
+    export function handleLoad(_event: Event): void {
+
+        let playagain: HTMLButtonElement = <HTMLButtonElement>document.getElementById("startbutton");
+        playagain.addEventListener("click", reloadpage);
+
         let canvas: HTMLCanvasElement | null = document.querySelector("canvas");
         if (!canvas)
             return;
@@ -56,28 +69,19 @@ namespace InBetween {
 
     }
 
-    /*function myFunction() : void {
-        let x = document.getElementById("myDIV");
-        if (x.style.display === "none") {
-          x.style.display = "block";
-        } else {
-          x.style.display = "none";
-        }
-      }*/
 
     function update(): void {
         crc2.clearRect(0, 0, crc2.canvas.width, crc2.canvas.height);
         crc2.putImageData(image, 0, 0);
 
-        let outOfBounds = throwLightball && throwLightball.position.y < 0;
+        let outOfBounds = throwLightball &&
+            throwLightball.position.y < 0;
+
 
         //console.log(rectangleDragged);
 
         if (throwLightball && !outOfBounds && levelCompleted == false) {
-            let totalElements = [...rectangleArray, ...squareArray, ...triangleArray];
-
-            for (let element of totalElements) {
-            }
+            //let totalElements = [...rectangleArray, ...squareArray, ...triangleArray];
 
             throwLightball.draw();
             throwLightball.move(1);
@@ -245,7 +249,7 @@ namespace InBetween {
     function drawSquarebutton(): void {
 
         crc2.save();
-        if (button2hover == true && squareArray.length < 4) {
+        if (button2hover == true && squareArray.length < 3) {
             crc2.fillStyle = "#f2f2f2";
             crc2.globalAlpha = 0.4;
         }
@@ -254,7 +258,7 @@ namespace InBetween {
             crc2.fillStyle = "#333333";
         }
 
-        if (squareArray.length >= 4) {
+        if (squareArray.length >= 3) {
             crc2.fillStyle = "#222222";
         }
 
@@ -265,12 +269,12 @@ namespace InBetween {
         crc2.save();
         crc2.shadowBlur = 7;
 
-        if (squareArray.length < 4) {
+        if (squareArray.length < 3) {
             crc2.shadowColor = "#f2f2f2";
             crc2.fillStyle = "#f2f2f2";
         }
 
-        if (squareArray.length >= 4) {
+        if (squareArray.length >= 3) {
             crc2.shadowColor = "#555555";
             crc2.fillStyle = "#555555";
         }
@@ -287,7 +291,7 @@ namespace InBetween {
     function drawTrianglebutton(): void {
 
         crc2.save();
-        if (button3hover == true && triangleArray.length < 0) {
+        if (button3hover == true && triangleArray.length < 1) {
             crc2.fillStyle = "#f2f2f2";
             crc2.globalAlpha = 0.4;
         }
@@ -296,7 +300,7 @@ namespace InBetween {
             crc2.fillStyle = "#333333";
         }
 
-        if (triangleArray.length >= 0) {
+        if (triangleArray.length >= 1) {
             crc2.fillStyle = "#222222";
         }
 
@@ -308,12 +312,12 @@ namespace InBetween {
         crc2.save();
         crc2.shadowBlur = 7;
 
-        if (triangleArray.length < 0) {
+        if (triangleArray.length < 1) {
             crc2.shadowColor = "#f2f2f2";
             crc2.fillStyle = "#f2f2f2";
         }
 
-        if (triangleArray.length >= 0) {
+        if (triangleArray.length >= 1) {
             crc2.shadowColor = "#555555";
             crc2.fillStyle = "#555555";
         }
@@ -686,60 +690,6 @@ namespace InBetween {
 
     //rotate object 
 
-    function handleRightclick(_client: MouseEvent): void {
-
-
-        for (let [index, rectangle] of rectangleArray.entries()) {
-            if (rectanglePresent == true &&
-                _client.offsetX > rectangle.position.x - rectangle.w / 2 &&
-                _client.offsetX < rectangle.position.x + rectangle.w / 2 &&
-                _client.offsetY > rectangle.position.y - rectangle.h / 2 &&
-                _client.offsetY < rectangle.position.y + rectangle.h / 2) {
-
-                console.log("right click");
-
-                rectangle.r += 45;
-                if (rectangle.r == 180) {
-                    rectangle.r = 0;
-                }
-                console.log(rectangle.r)
-                rectangleArray[index] = rectangle;
-                currentRectangle = rectangle;
-            }
-        }
-
-        for (let [index, square] of squareArray.entries()) {
-            if (squarePresent == true &&
-                _client.offsetX > square.position.x - square.w / 2 &&
-                _client.offsetX < square.position.x + square.w / 2 &&
-                _client.offsetY > square.position.y - square.h / 2 &&
-                _client.offsetY < square.position.y + square.h / 2) {
-
-                square.r += 22.5;
-                if (square.r == 90) {
-                    square.r = 0;
-                }
-                squareArray[index] = square;
-                currentSquare = square;
-            }
-        }
-
-        for (let [index, triangle] of triangleArray.entries()) {
-            if (trianglePresent == true &&
-                _client.offsetX > triangle.position.x - triangle.w &&
-                _client.offsetX < triangle.position.x + triangle.w &&
-                _client.offsetY > triangle.position.y - triangle.h / 2 &&
-                _client.offsetY < triangle.position.y + triangle.h / 2) {
-
-                triangle.r += 22.5;
-
-                triangleArray[index] = triangle;
-                currentTriangle = triangle;
-            }
-        }
-
-
-    }
 
     function setStartbuttonRadius(): void {
         rstart = 25;
@@ -762,7 +712,63 @@ namespace InBetween {
             setTimeout(setStartbuttonRadius, 125);
             //console.log(rstart)
             levelCompleted = false;
+            startbuttonsound.play();
+            startbuttonsound.volume = 0.1;
+            let showendscreen: HTMLDivElement = <HTMLDivElement>document.getElementById("overlay");
+            showendscreen.style.display = "none";
 
+            //rotate object
+        } else if (!draggedElement) {
+
+
+            for (let [index, rectangle] of rectangleArray.entries()) {
+                if (rectanglePresent == true &&
+                    _client.offsetX > rectangle.position.x - rectangle.w / 2 &&
+                    _client.offsetX < rectangle.position.x + rectangle.w / 2 &&
+                    _client.offsetY > rectangle.position.y - rectangle.h / 2 &&
+                    _client.offsetY < rectangle.position.y + rectangle.h / 2) {
+
+                    console.log("left click");
+
+                    rectangle.r += 45;
+                    if (rectangle.r == 180) {
+                        rectangle.r = 0;
+                    }
+                    console.log(rectangle.r)
+                    rectangleArray[index] = rectangle;
+                    currentRectangle = rectangle;
+                }
+            }
+
+            for (let [index, square] of squareArray.entries()) {
+                if (squarePresent == true &&
+                    _client.offsetX > square.position.x - square.w / 2 &&
+                    _client.offsetX < square.position.x + square.w / 2 &&
+                    _client.offsetY > square.position.y - square.h / 2 &&
+                    _client.offsetY < square.position.y + square.h / 2) {
+
+                    square.r += 22.5;
+                    if (square.r == 90) {
+                        square.r = 0;
+                    }
+                    squareArray[index] = square;
+                    currentSquare = square;
+                }
+            }
+
+            for (let [index, triangle] of triangleArray.entries()) {
+                if (trianglePresent == true &&
+                    _client.offsetX > triangle.position.x - triangle.w &&
+                    _client.offsetX < triangle.position.x + triangle.w &&
+                    _client.offsetY > triangle.position.y - triangle.h / 2 &&
+                    _client.offsetY < triangle.position.y + triangle.h / 2) {
+
+                    triangle.r += 22.5;
+
+                    triangleArray[index] = triangle;
+                    currentTriangle = triangle;
+                }
+            }
         }
 
     }
@@ -791,7 +797,7 @@ namespace InBetween {
             window.addEventListener("mouseup", handleMouseup);
         }
 
-        if (squareArray.length < 4 &&
+        if (squareArray.length < 3 &&
             _client.offsetX > xbutton2 &&
             _client.offsetX < xbutton2 + wbutton2 &&
             _client.offsetY > ybutton2 &&
@@ -807,7 +813,7 @@ namespace InBetween {
             window.addEventListener("mouseup", handleMouseup);
         }
 
-        if (triangleArray.length < 0 &&
+        if (triangleArray.length < 1 &&
             _client.offsetX > xbutton3 &&
             _client.offsetX < xbutton3 + wbutton3 &&
             _client.offsetY > ybutton3 &&
@@ -950,14 +956,15 @@ namespace InBetween {
 
     }
 
+
     //drag and drop
 
     export function handleMousemoveRectangle(_client: MouseEvent): void {
 
-
         currentRectangle.position.x = _client.offsetX;
         currentRectangle.position.y = _client.offsetY;
         rectangleDragged = true;
+        draggedElement = true;
 
     }
 
@@ -967,6 +974,7 @@ namespace InBetween {
         currentSquare.position.x = _client.offsetX;
         currentSquare.position.y = _client.offsetY;
         squareDragged = true;
+        draggedElement = true;
 
     }
 
@@ -975,12 +983,21 @@ namespace InBetween {
         currentTriangle.position.x = _client.offsetX;
         currentTriangle.position.y = _client.offsetY;
         triangleDragged = true;
+        draggedElement = true;
     }
 
     function handleMouseup(_client: MouseEvent): void {
 
+        if (draggedElement) {
+            setTimeout(() => {
+                draggedElement = false;
+            }, 10);
+        }
+
         for (let rectangle of rectangleArray) {
             currentRectangle = rectangle;
+            //placerectanglesound.volume = 0.1;
+            //placerectanglesound.play();
             if (rectanglePresent == true &&
                 currentRectangle.position.y > 617
             ) {
@@ -988,6 +1005,7 @@ namespace InBetween {
                 let index: number = rectangleArray.indexOf(currentRectangle);
                 rectangleArray.splice(index, 1);
             }
+
         }
 
 
@@ -1000,6 +1018,7 @@ namespace InBetween {
                 let index: number = squareArray.indexOf(currentSquare);
                 squareArray.splice(index, 1);
             }
+           
         }
 
         for (let triangle of triangleArray) {
@@ -1023,6 +1042,32 @@ namespace InBetween {
         ){
             console.log("remove");
         }*/
+
+        /*if (throwLightball && throwLightball.position.y >= 0 &&
+            throwLightball.position.y <= 610 &&
+            throwLightball.position.x >= 0 &&
+            throwLightball.position.x <= 360) {
+
+            window.removeEventListener("click", handleLeftclick);
+            window.removeEventListener("contextmenu", handleRightclick);
+            window.removeEventListener("mousedown", handleMousedown);
+            window.removeEventListener("mousemove", handleMousemoveHover)
+            window.removeEventListener("mousemove", handleMousemoveRectangle);
+            window.removeEventListener("mousemove", handleMousemoveSquare);
+            window.removeEventListener("mousemove", handleMousemoveTriangle);
+            window.removeEventListener("mouseup", handleMouseup);
+        }
+        else {
+            console.log("out");
+            window.addEventListener("click", handleLeftclick);
+            window.addEventListener("contextmenu", handleRightclick);
+            window.addEventListener("mousedown", handleMousedown);
+            window.addEventListener("mousemove", handleMousemoveHover)
+            window.addEventListener("mousemove", handleMousemoveRectangle);
+            window.addEventListener("mousemove", handleMousemoveSquare);
+            window.addEventListener("mousemove", handleMousemoveTriangle);
+            window.addEventListener("mouseup", handleMouseup);
+        } */
 
 
         window.removeEventListener("mousemove", handleMousemoveRectangle);
