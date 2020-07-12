@@ -249,7 +249,7 @@ namespace InBetween {
     function drawSquarebutton(): void {
 
         crc2.save();
-        if (button2hover == true && squareArray.length < 3) {
+        if (button2hover == true && squareArray.length < 4) {
             crc2.fillStyle = "#f2f2f2";
             crc2.globalAlpha = 0.4;
         }
@@ -258,7 +258,7 @@ namespace InBetween {
             crc2.fillStyle = "#333333";
         }
 
-        if (squareArray.length >= 3) {
+        if (squareArray.length >= 4) {
             crc2.fillStyle = "#222222";
         }
 
@@ -269,12 +269,12 @@ namespace InBetween {
         crc2.save();
         crc2.shadowBlur = 7;
 
-        if (squareArray.length < 3) {
+        if (squareArray.length < 4) {
             crc2.shadowColor = "#f2f2f2";
             crc2.fillStyle = "#f2f2f2";
         }
 
-        if (squareArray.length >= 3) {
+        if (squareArray.length >= 4) {
             crc2.shadowColor = "#555555";
             crc2.fillStyle = "#555555";
         }
@@ -291,7 +291,7 @@ namespace InBetween {
     function drawTrianglebutton(): void {
 
         crc2.save();
-        if (button3hover == true && triangleArray.length < 1) {
+        if (button3hover == true && triangleArray.length < 0) {
             crc2.fillStyle = "#f2f2f2";
             crc2.globalAlpha = 0.4;
         }
@@ -300,7 +300,7 @@ namespace InBetween {
             crc2.fillStyle = "#333333";
         }
 
-        if (triangleArray.length >= 1) {
+        if (triangleArray.length >= 0) {
             crc2.fillStyle = "#222222";
         }
 
@@ -312,12 +312,12 @@ namespace InBetween {
         crc2.save();
         crc2.shadowBlur = 7;
 
-        if (triangleArray.length < 1) {
+        if (triangleArray.length < 0) {
             crc2.shadowColor = "#f2f2f2";
             crc2.fillStyle = "#f2f2f2";
         }
 
-        if (triangleArray.length >= 1) {
+        if (triangleArray.length >= 0) {
             crc2.shadowColor = "#555555";
             crc2.fillStyle = "#555555";
         }
@@ -797,7 +797,7 @@ namespace InBetween {
             window.addEventListener("mouseup", handleMouseup);
         }
 
-        if (squareArray.length < 3 &&
+        if (squareArray.length < 4 &&
             _client.offsetX > xbutton2 &&
             _client.offsetX < xbutton2 + wbutton2 &&
             _client.offsetY > ybutton2 &&
@@ -813,7 +813,7 @@ namespace InBetween {
             window.addEventListener("mouseup", handleMouseup);
         }
 
-        if (triangleArray.length < 1 &&
+        if (triangleArray.length < 0 &&
             _client.offsetX > xbutton3 &&
             _client.offsetX < xbutton3 + wbutton3 &&
             _client.offsetY > ybutton3 &&

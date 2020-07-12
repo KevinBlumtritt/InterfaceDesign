@@ -190,14 +190,14 @@ var InBetween;
     let hbutton2 = 60;
     function drawSquarebutton() {
         InBetween.crc2.save();
-        if (InBetween.button2hover == true && InBetween.squareArray.length < 3) {
+        if (InBetween.button2hover == true && InBetween.squareArray.length < 4) {
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.globalAlpha = 0.4;
         }
         if (InBetween.button2hover == false) {
             InBetween.crc2.fillStyle = "#333333";
         }
-        if (InBetween.squareArray.length >= 3) {
+        if (InBetween.squareArray.length >= 4) {
             InBetween.crc2.fillStyle = "#222222";
         }
         InBetween.crc2.fillRect(xbutton2, ybutton2, wbutton2, hbutton2);
@@ -205,11 +205,11 @@ var InBetween;
         InBetween.crc2.closePath();
         InBetween.crc2.save();
         InBetween.crc2.shadowBlur = 7;
-        if (InBetween.squareArray.length < 3) {
+        if (InBetween.squareArray.length < 4) {
             InBetween.crc2.shadowColor = "#f2f2f2";
             InBetween.crc2.fillStyle = "#f2f2f2";
         }
-        if (InBetween.squareArray.length >= 3) {
+        if (InBetween.squareArray.length >= 4) {
             InBetween.crc2.shadowColor = "#555555";
             InBetween.crc2.fillStyle = "#555555";
         }
@@ -223,14 +223,14 @@ var InBetween;
     let hbutton3 = 60;
     function drawTrianglebutton() {
         InBetween.crc2.save();
-        if (InBetween.button3hover == true && InBetween.triangleArray.length < 1) {
+        if (InBetween.button3hover == true && InBetween.triangleArray.length < 0) {
             InBetween.crc2.fillStyle = "#f2f2f2";
             InBetween.crc2.globalAlpha = 0.4;
         }
         if (InBetween.button3hover == false) {
             InBetween.crc2.fillStyle = "#333333";
         }
-        if (InBetween.triangleArray.length >= 1) {
+        if (InBetween.triangleArray.length >= 0) {
             InBetween.crc2.fillStyle = "#222222";
         }
         InBetween.crc2.fillRect(xbutton3, ybutton3, wbutton3, hbutton3);
@@ -239,11 +239,11 @@ var InBetween;
         InBetween.crc2.beginPath();
         InBetween.crc2.save();
         InBetween.crc2.shadowBlur = 7;
-        if (InBetween.triangleArray.length < 1) {
+        if (InBetween.triangleArray.length < 0) {
             InBetween.crc2.shadowColor = "#f2f2f2";
             InBetween.crc2.fillStyle = "#f2f2f2";
         }
-        if (InBetween.triangleArray.length >= 1) {
+        if (InBetween.triangleArray.length >= 0) {
             InBetween.crc2.shadowColor = "#555555";
             InBetween.crc2.fillStyle = "#555555";
         }
@@ -634,7 +634,7 @@ var InBetween;
             window.addEventListener("mousemove", handleMousemoveRectangle);
             window.addEventListener("mouseup", handleMouseup);
         }
-        if (InBetween.squareArray.length < 3 &&
+        if (InBetween.squareArray.length < 4 &&
             _client.offsetX > xbutton2 &&
             _client.offsetX < xbutton2 + wbutton2 &&
             _client.offsetY > ybutton2 &&
@@ -648,7 +648,7 @@ var InBetween;
             window.addEventListener("mousemove", handleMousemoveSquare);
             window.addEventListener("mouseup", handleMouseup);
         }
-        if (InBetween.triangleArray.length < 1 &&
+        if (InBetween.triangleArray.length < 0 &&
             _client.offsetX > xbutton3 &&
             _client.offsetX < xbutton3 + wbutton3 &&
             _client.offsetY > ybutton3 &&

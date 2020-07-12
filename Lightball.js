@@ -761,12 +761,10 @@ var InBetween;
                     console.log(square.isHit);
                     InBetween.collisionsound.currentTime = 0;
                     InBetween.collisionsound.play();
-                    ;
-                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 22.5 && this.velocity.x == 5 && this.velocity.y == 5) {
-                        this.velocity.x = 5;
+                        this.velocity.x = 7;
                         this.velocity.y = 0;
                         continue;
                     }
@@ -910,8 +908,6 @@ var InBetween;
                     console.log(square.isHit);
                     InBetween.collisionsound.currentTime = 0;
                     InBetween.collisionsound.play();
-                    ;
-                    ;
                     InBetween.squareArray[index] = square;
                     InBetween.currentSquare = square;
                     if (square.r == 67.5 && this.velocity.x == 5 && this.velocity.y == 5) {
@@ -969,9 +965,9 @@ var InBetween;
                 //up-left long box
                 if (InBetween.squarePresent == true && square.isHit == false && square.r == 67.5 &&
                     this.position.x > square.position.x - square.w * 0.7 &&
-                    this.position.x < square.position.x - square.w * 0.3 &&
+                    this.position.x < square.position.x + square.w * 0.3 &&
                     this.position.y > square.position.y - square.h * 0.7 &&
-                    this.position.y < square.position.y + square.h * 0.3) {
+                    this.position.y < square.position.y - square.h * 0.3) {
                     square.isHit = true;
                     console.log(square.isHit);
                     InBetween.collisionsound.currentTime = 0;
@@ -986,15 +982,15 @@ var InBetween;
                         continue;
                     }
                     if (square.r == 67.5 && this.velocity.x == 7 && this.velocity.y == 0) {
-                        this.velocity = new InBetween.Vector(-5, -5);
+                        this.velocity = new InBetween.Vector(5, -5);
                         continue;
                     }
                     if (square.r == 67.5 && this.velocity.x == 5 && this.velocity.y == 5) {
-                        this.velocity = new InBetween.Vector(-7, 0);
+                        this.velocity = new InBetween.Vector(0, -7);
                         continue;
                     }
                     if (square.r == 67.5 && this.velocity.x == 0 && this.velocity.y == 7) {
-                        this.velocity = new InBetween.Vector(-5, 5);
+                        this.velocity = new InBetween.Vector(-5, -5);
                         continue;
                     }
                     console.log(this.velocity);
